@@ -41,6 +41,7 @@ export default async function NoticesPage() {
           <NoticeCard
             key={notice.id}
             title={notice.title}
+            slug={notice.slug}          
             referenceNumber={notice.noticeFields.referenceNumber}
             department={notice.noticeFields.department}
             priorityLevel={notice.noticeFields.priorityLevel}

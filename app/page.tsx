@@ -1,7 +1,14 @@
-import Image from "next/image";
+import AboutUsFrame from "@/components/AboutUsFrame";
+// import HeroSection from "@/components/HeroSection"; // if you have it
 
 export default function Home() {
   return (
-    <h1>hello world</h1>
+    <main>
+      {/* Hero Section comes first */}
+      {/* <HeroSection /> */}
+
+      {/* About Us / Frame section */}
+      <AboutUsFrame />
+    </main>
   );
 }

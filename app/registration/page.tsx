@@ -35,32 +35,152 @@ export default function RegistrationPage() {
         </section>
 
         {/* DISCLAIMER */}
-        <div className="mt-6 rounded-md border border-blue-200 bg-blue-50 p-4 text-sm text-blue-800">
-          <strong>Official Notice:</strong>  
-          This registration form is hosted via a secure Google Forms service
-          and is officially linked by the concerned authority.
-        </div>
+<div className="mt-6 rounded-md border border-blue-200 bg-blue-50 p-4 text-sm text-blue-800">
+  <strong>Official Notice:</strong>
+  <ol className="mt-2 list-decimal space-y-3 pl-5">
+    <li>
+      <strong>Registration Fees:</strong> ₹850 (Eight Hundred Fifty Rupees Only)  
+      <br />
+      <span className="block">
+        <strong>पंजीकरण शुल्क:</strong> ₹850 (आठ सौ पचास भारतीय रुपये मात्र)।
+      </span>
+    </li>
 
-        {/* FORM EMBED */}
-        <div className="mt-8">
-          <h2 className="text-lg font-medium text-gray-800 mb-4">
-            Registration Form
-          </h2>
+    <li>
+      <strong>Eligibility Requirement:</strong> You must certify that no criminal
+      or civil legal cases (active or concluded) are registered against your
+      name. Compliance will be verified through a mandatory background
+      verification process.
+      <br />
+      <span className="block">
+        <strong>पात्रता शर्त:</strong> आवेदक के नाम पर कोई भी आपराधिक या सिविल
+        कानूनी कार्यवाही (सक्रिय या पूर्ण) पंजीकृत नहीं होनी चाहिए। इस स्थिति की
+        पुष्टि एक अनिवार्य पृष्ठभूमि सत्यापन प्रक्रिया (Background Verification)
+        के माध्यम से की जाएगी।
+      </span>
+    </li>
+  </ol>
+</div>
 
-          <div className="w-full overflow-hidden rounded-md border border-gray-300">
-            <iframe
-              src="https://docs.google.com/forms/d/e/1FAIpQLSd8DYASPVix-MNFtBKts0zYpm95kSVOVi5Pnw5TNZrxt2m4QA/viewform?usp=dialog"
-              width="100%"
-              height="900"
-              frameBorder="0"
-              marginHeight={0}
-              marginWidth={0}
-              className="w-full"
-            >
-              Loading…
-            </iframe>
-          </div>
-        </div>
+
+{/* REGISTRATION FORM */}
+<div className="mt-8">
+  <h2 className="text-lg font-medium text-gray-800 mb-4">
+    Registration Form
+  </h2>
+
+  <form
+    action="/api/register"
+    method="POST"
+    encType="multipart/form-data"
+    className="rounded-md border border-gray-300 bg-white p-6 space-y-6"
+  >
+    {/* Full Name */}
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-1">
+        Full Name / पूरा नाम
+      </label>
+      <input
+        type="text"
+        name="name"
+        required
+        placeholder="Enter your full name"
+        className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none"
+      />
+    </div>
+
+    {/* Father's Name */}
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-1">
+        Father’s Name / पिता का नाम
+      </label>
+      <input
+        type="text"
+        name="father_name"
+        required
+        placeholder="Enter father's name"
+        className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none"
+      />
+    </div>
+
+    {/* Date of Birth */}
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-1">
+        Date of Birth / जन्म तिथि
+      </label>
+      <input
+        type="date"
+        name="dob"
+        required
+        className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none"
+      />
+    </div>
+
+    {/* Email (needed for acknowledgment) */}
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-1">
+        Email Address / ईमेल
+      </label>
+      <input
+        type="email"
+        name="email"
+        required
+        placeholder="Enter your email"
+        className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none"
+      />
+    </div>
+
+    {/* Upload Photo */}
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-1">
+        Passport Size Photograph / पासपोर्ट साइज फोटो
+      </label>
+      <div className="flex items-center justify-center rounded-md border border-dashed border-gray-300 bg-gray-50 p-4 text-sm text-gray-600">
+        <input
+          type="file"
+          name="photo"
+          accept="image/*"
+          required
+          className="w-full cursor-pointer"
+        />
+      </div>
+      <p className="mt-1 text-xs text-gray-500">
+        JPG/PNG format only, max size 2MB
+      </p>
+    </div>
+
+    {/* Aadhaar Upload */}
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-1">
+        Aadhaar Card Upload / आधार कार्ड अपलोड
+      </label>
+      <div className="flex items-center justify-center rounded-md border border-dashed border-gray-300 bg-gray-50 p-4 text-sm text-gray-600">
+        <input
+          type="file"
+          name="aadhaar"
+          accept="image/*,.pdf"
+          required
+          className="w-full cursor-pointer"
+        />
+      </div>
+      <p className="mt-1 text-xs text-gray-500">
+        PDF or Image format, max size 5MB
+      </p>
+    </div>
+
+    {/* Submit */}
+    <div className="pt-4">
+      <button
+        type="submit"
+        className="w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 transition"
+      >
+        Submit Registration
+      </button>
+    </div>
+  </form>
+</div>
+
+
       </div>
     </main>
   );
