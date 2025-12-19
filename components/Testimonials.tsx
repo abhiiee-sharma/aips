@@ -64,7 +64,7 @@ export default function TestimonialSection() {
   const handlePrev = () => setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
 
   return (
-    <section className="py-10 bg-[#F8FAFC]">
+    <section className="py-8 bg-[#F8FAFC]">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Header */}

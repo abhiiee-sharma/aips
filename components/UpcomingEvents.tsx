@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link"; // Import Link
 import { ChevronLeft, ChevronRight, Calendar, MapPin, Clock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -21,7 +22,6 @@ export default function UpcomingEvents({ events = [] }: { events: EventNode[] })
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 3;
   
-  // Filter to only show 'Upcoming' events if you prefer, or show all
   const displayEvents = events;
   const totalPages = Math.ceil(displayEvents.length / itemsPerPage);
 
@@ -36,7 +36,7 @@ export default function UpcomingEvents({ events = [] }: { events: EventNode[] })
   if (displayEvents.length === 0) return null;
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-8 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Header */}
@@ -72,42 +72,47 @@ export default function UpcomingEvents({ events = [] }: { events: EventNode[] })
               initial={{ opacity: 0, x: 10 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -10 }}
-              className="contents" // Allows grid to function normally
+              className="contents"
             >
               {currentItems.map((event) => (
-                <div
-                  key={event.id}
-                  className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col h-full hover:shadow-md transition-all group"
+                /* Wrap card in Link to enable detailed navigation */
+                <Link 
+                  key={event.id} 
+                  href={`/events/${event.slug}`} 
+                  className="block h-full group"
                 >
-                  <div className="flex justify-between items-start mb-4">
-                    <div className="flex items-center gap-2 text-[#ef4444] text-xs font-bold uppercase">
-                      <Calendar size={14} />
-                      <span>{event.eventFields.eventDate}</span>
+                  <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col h-full hover:shadow-md transition-all">
+                    <div className="flex justify-between items-start mb-4">
+                      <div className="flex items-center gap-2 text-[#ef4444] text-xs font-bold uppercase">
+                        <Calendar size={14} />
+                        <span>{event.eventFields.eventDate}</span>
+                      </div>
+                      <span className="text-[10px] bg-green-50 text-green-600 px-2 py-0.5 rounded-full font-bold uppercase border border-green-100">
+                        {event.eventFields.eventStatus}
+                      </span>
                     </div>
-                    <span className="text-[10px] bg-green-50 text-green-600 px-2 py-0.5 rounded-full font-bold uppercase border border-green-100">
-                      {event.eventFields.eventStatus}
-                    </span>
+                    
+                    {/* group-hover:text-blue-700 added for visual feedback */}
+                    <h3 className="text-xl font-bold text-[#003366] group-hover:text-blue-700 transition-colors mb-3 line-clamp-2">
+                      {event.title}
+                    </h3>
+                    
+                    <p className="text-gray-600 text-sm mb-6 flex-grow line-clamp-3">
+                      {event.content.replace(/<[^>]*>?/gm, '')}
+                    </p>
+                    
+                    <div className="flex items-center justify-between pt-4 border-t border-gray-50 text-gray-400 text-[11px] font-medium">
+                      <div className="flex items-center gap-1">
+                        <MapPin size={12} />
+                        <span className="line-clamp-1">{event.eventFields.location}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Clock size={12} />
+                        <span>{event.eventFields.eventTime}</span>
+                      </div>
+                    </div>
                   </div>
-                  
-                  <h3 className="text-xl font-bold text-[#003366] mb-3 line-clamp-2">
-                    {event.title}
-                  </h3>
-                  
-                  <p className="text-gray-600 text-sm mb-6 flex-grow line-clamp-3">
-                    {event.content.replace(/<[^>]*>?/gm, '')}
-                  </p>
-                  
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-50 text-gray-400 text-[11px] font-medium">
-                    <div className="flex items-center gap-1">
-                      <MapPin size={12} />
-                      <span className="line-clamp-1">{event.eventFields.location}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Clock size={12} />
-                      <span>{event.eventFields.eventTime}</span>
-                    </div>
-                  </div>
-                </div>
+                </Link>
               ))}
             </motion.div>
           </AnimatePresence>

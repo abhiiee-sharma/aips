@@ -27,7 +27,7 @@ export default function RecentNotices({ notices }: { notices: NoticeNode[] }) {
   const listNotices = notices.slice(1, 4);
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-6 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-10">
           <h4 className="text-[#ef4444] font-bold mb-2 uppercase tracking-widest text-sm italic">

@@ -7,9 +7,9 @@ import { useState } from "react";
 const navigationItems = [
   { label: "Home", href: "/" }, // Added Home
   { label: "About Us", href: "/about" },
-  { label: "What we do", href: "/what-we-do" },
   { label: "Notices", href: "/notices" },
   { label: "Events", href: "/events" },
+  { label: "Donate", href: "/donate" },
 ];
 
 export default function NavigationBarSection() {
