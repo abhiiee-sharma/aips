@@ -10,7 +10,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#003366] text-white border-t-4 border-[#ef4444]">
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-6 py-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           
           {/* Column 1: Brand & Logo */}

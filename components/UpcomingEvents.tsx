@@ -36,7 +36,7 @@ export default function UpcomingEvents({ events = [] }: { events: EventNode[] })
   if (displayEvents.length === 0) return null;
 
   return (
-    <section className="py-8 bg-gray-50">
+    <section className="pt-8 pb-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Header */}

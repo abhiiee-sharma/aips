@@ -45,11 +45,11 @@ export default function RecentNotices({ notices }: { notices: NoticeNode[] }) {
               <Link 
                 key={notice.id} 
                 href={`/notices/${notice.slug}`}
-                className="flex items-center gap-5 bg-gray-50 p-5 rounded-2xl border border-transparent hover:border-[#003366]/20 hover:bg-white hover:shadow-lg transition-all group flex-1"
+                className="flex items-center gap-5 bg-gray-100 p-5 rounded-2xl border border-transparent hover:border-[#003366]/20 hover:bg-white hover:shadow-lg transition-all group flex-1"
               >
                 <div className="shrink-0 bg-white p-3 rounded-xl shadow-sm border border-gray-100">
                   <Image 
-                    src="/police-logo.png" 
+                    src="/images/aips-notice.png" 
                     alt="AIPS Logo" 
                     width={40} 
                     height={40} 
