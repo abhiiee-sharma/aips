@@ -2,12 +2,12 @@ import Image from "next/image";
 
 export default function MainHeaderSection() {
   return (
-    // Set a defined height: h-28 on mobile, h-40 on desktop
-    <header className="w-full flex items-center justify-center bg-transparent h-28 md:h-40 px-4">
-      <div className="flex items-center gap-3 md:gap-6">
+    // Reduced height from h-28/40 to h-24/32 (96px/128px)
+    <header className="w-full flex items-center justify-center bg-transparent h-24 md:h-32 px-4">
+      <div className="flex items-center gap-4 md:gap-8">
         
-        {/* Emblem - Smaller on mobile (width 60), larger on desktop (width 100) */}
-        <div className="relative w-[60px] h-[72px] md:w-[100px] md:h-[120px] shrink-0">
+        {/* Emblem - Balanced sizing for better vertical fit */}
+        <div className="relative w-[50px] h-[60px] md:w-[85px] md:h-[105px] shrink-0">
           <Image
             src="/police-emblem.png"
             alt="Police Emblem"
@@ -19,12 +19,12 @@ export default function MainHeaderSection() {
 
         {/* Text Container */}
         <div className="flex flex-col justify-center">
-          <h1 className="font-bold text-[#25066d] text-2xl sm:text-3xl md:text-5xl tracking-tight leading-tight">
+          <h1 className="font-bold text-[#25066d] text-xl sm:text-2xl md:text-4xl tracking-tight leading-none">
             All India Police Sahyog
           </h1>
 
-          {/* Centered sub-text with responsive sizing */}
-          <p className="font-semibold text-[#ef4444] text-sm sm:text-lg md:text-2xl tracking-wide text-center mt-0.5 md:mt-1">
+          {/* Tagline - Tighter margin to save vertical space */}
+          <p className="font-bold text-[#ef4444] text-xs sm:text-base md:text-xl tracking-wider text-center mt-1">
             एकता और अनुशासन
           </p>
         </div>

@@ -1,4 +1,4 @@
-import { client } from "@/lib/graphql"; // Ensure this is imported to use .request()
+import { client } from "@/lib/graphql";
 import { gql } from "graphql-request";
 import Hero from "@/components/Hero";
 import AboutUsFrame from "@/components/AboutSection";
@@ -6,9 +6,10 @@ import UpcomingEvents from "@/components/UpcomingEvents";
 import TestimonialSection from "@/components/Testimonials";
 import RecentNotices from "@/components/RecentNotices";
 
-const RECENT_NOTICES_QUERY = gql`
-  query GetRecentNotices {
-    notices(first: 5) {
+// Unified query to fetch both Notices and Events
+const HOME_DATA_QUERY = gql`
+  query GetHomeData {
+    notices(first: 4) {
       nodes {
         id
         title
@@ -19,22 +20,35 @@ const RECENT_NOTICES_QUERY = gql`
         }
       }
     }
+    events(first: 9) {
+      nodes {
+        id
+        title
+        slug
+        content
+        eventFields {
+          eventDate
+          eventTime
+          location
+          eventStatus
+        }
+      }
+    }
   }
 `;
 
-// 1. Mark the function as async
 export default async function Home() {
   let noticesData = [];
+  let eventsData = [];
 
   try {
-    // 2. Fetch the data inside the component
-    const data: any = await client.request(RECENT_NOTICES_QUERY);
+    // Single request for all homepage data
+    const data: any = await client.request(HOME_DATA_QUERY);
     
-    // 3. Extract nodes and handle potential nulls
     noticesData = data?.notices?.nodes || [];
+    eventsData = data?.events?.nodes || [];
   } catch (error) {
-    console.error("Error fetching notices for Home:", error);
-    // noticesData remains an empty array, preventing a crash
+    console.error("Error fetching homepage data:", error);
   }
 
   return (
@@ -43,15 +57,17 @@ export default async function Home() {
       
       {/* About Us section */}
       <AboutUsFrame />
+
+      
       
       {/* Testimonials / Voices of Valor */}
       <TestimonialSection />
 
-      {/* Recent Events / Notices from WordPress */}
+      {/* Recent Notices from WordPress */}
       <RecentNotices notices={noticesData} />
 
-      {/* Upcoming Events Carousel */}
-      <UpcomingEvents />
+      {/* Dynamic Events Carousel - Now receiving live data */}
+      <UpcomingEvents events={eventsData} />
     </main>
   );
 }
