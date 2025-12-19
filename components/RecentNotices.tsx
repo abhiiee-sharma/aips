@@ -75,7 +75,7 @@ export default function RecentNotices({ notices }: { notices: NoticeNode[] }) {
           <div className="bg-white rounded-[2rem] overflow-hidden shadow-xl border border-gray-100 flex flex-col h-full">
             <div className="relative h-64 w-full">
               <Image
-                src="/felicitating-commisoner.jpg" 
+                src="/images/about-main.jpg" 
                 alt={featuredNotice.title}
                 fill
                 className="object-cover"
@@ -85,7 +85,7 @@ export default function RecentNotices({ notices }: { notices: NoticeNode[] }) {
               </div>
             </div>
             
-            <div className="p-8 flex flex-col justify-between flex-grow">
+            <div className="p-8 flex flex-col justify-between grow">
               <div>
                 <h3 className="text-2xl font-bold text-[#003366] leading-tight mb-4">
                   {featuredNotice.title}
