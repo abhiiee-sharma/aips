@@ -72,6 +72,25 @@ export default function RegistrationForm() {
           />
         </div>
 
+        {/* Mobile Number */}
+<div>
+  <label className="block text-sm font-medium text-gray-700 mb-1">
+    Mobile Number / मोबाइल नंबर
+  </label>
+  <input
+    type="tel"
+    name="mobile"
+    required
+    placeholder="Enter mobile number"
+    pattern="[0-9]{10}"
+    className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none"
+  />
+  <p className="mt-1 text-xs text-gray-500">
+    10-digit mobile number
+  </p>
+</div>
+
+
         {/* Email */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
